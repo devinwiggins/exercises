@@ -56,7 +56,7 @@ int main()
 	//std::cout << list.front();
 	//list.destroyList();
 	
-	list.deleteNode(6);
+	//list.deleteNode(6);
 	//list2 = list;
 	list.print();
 	//std::cout << list2.back();
