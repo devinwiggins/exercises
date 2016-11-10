@@ -166,9 +166,10 @@ inline void linkedListType<Type>::print() const
 	currentNode = first;
 	while (currentNode != NULL)
 	{
-		std::cout << currentNode->info << std::endl; //prints the data of the nodes while the conditions of the while loop is met
+		std::cout  << currentNode->info << std::endl; //prints the data of the nodes while the conditions of the while loop is met
 		currentNode = currentNode->link; //iterates through the list
 	}
+	std::cout << "count = " << count << std::endl;
 }
 
 template<typename Type>
@@ -277,33 +278,14 @@ inline void linkedListType<Type>::insertLast(const Type & nodeInfo)
 }
 
 
-//nodeType<Type>* node;
-	//nodeType<Type>* tmp = new nodeType<Type>;
-	//
-	//node = first;
-
-	//while (node != nullptr)
-	//{
-	//	node = node->link;
-
-	//	if (node->info == nodeInfo)
-	//	{
-	//		tmp = node;
-	//		node->link != tmp;
-	//		delete tmp;
-	//	}
-	//}
-
-
-
 template<typename Type>
-inline void linkedListType<Type>::deleteNode(const Type & nodeInfo)
+void linkedListType<Type>::deleteNode(const Type & nodeInfo)
 {
 	
 	nodeType<Type>* node = first;
 	if (node->info == nodeInfo)
 		{
-			nodeType<Type> *tmp = node->info;
+			nodeType<Type> *tmp = node;
 			node = node->link;
 			delete tmp;
 			count--;
