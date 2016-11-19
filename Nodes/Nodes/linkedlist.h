@@ -233,21 +233,21 @@ inline bool linkedListType<Type>::search(const Type & nodeInfo)
 template<typename Type>
 inline void linkedListType<Type>::insertFirst(const Type & nodeInfo)
 {
-	nodeType<Type>* node = new nodeType<Type>;
-	node->info = nodeInfo;
+	nodeType<Type>* node = new nodeType<Type>; // allocates memory for nodeType pointer
+	node->info = nodeInfo; // sets the nodes value
 
-	if (first != NULL)
+	if (first != NULL) // if the list has nodes
 	{
-		nodeType<Type> *tmp = first;
-		first = node;
-		first->link = tmp;		
+		nodeType<Type> *tmp = first; // creates a temporary variable to represent the previous first node
+		first = node; // new node is now the first in the list
+		first->link = tmp; // sets the new first nodes link to the node before it.. technically pushes it back
 	}
 	else
 	{
-		first = node;
-		last = node;
-		first->link = NULL;
-		last->link = NULL;
+		first = node; // new node is now the first node
+		last = node; // new node is also the last node because it is the only node
+		first->link = NULL; // because this is the only node the first node points to null which is always what the list ends with
+		last->link = NULL; // last node points to null
 	}
 
 	count++;
@@ -256,23 +256,23 @@ inline void linkedListType<Type>::insertFirst(const Type & nodeInfo)
 template<typename Type>
 inline void linkedListType<Type>::insertLast(const Type & nodeInfo)
 {
-	nodeType<Type>* node = new nodeType<Type>;
-	node->info = nodeInfo;
+	nodeType<Type>* node = new nodeType<Type>; // allocates memory for the new node
+	node->info = nodeInfo; // sets the new nodes info value
 
-	if (first != NULL)
+	if (first != NULL) // if the list already has nodes in it
 	{
-		nodeType<Type> *tmp = last;
-		last = node;
-		tmp->link = last;
-		last->link = NULL;
+		nodeType<Type> *tmp = last; // creates a variable to represent the previous last node
+		last = node;	 // sets the new node to the last node
+		tmp->link = last;// sets the link of the previous node to the last node (new node)
+		last->link = NULL; // last link is NULL
 
 	}
 	else
 	{
-		node = last;
-		node = first;
-		first->link = NULL;
-		last->link = NULL;
+		node = last; // new node is now the first node
+		node = first; // new node is also the last node because it is the only node
+		first->link = NULL; // because this is the only node the first node points to null which is always what the list ends with
+		last->link = NULL; // last node points to null
 	}
 	count++;
 }
@@ -282,13 +282,19 @@ template<typename Type>
 void linkedListType<Type>::deleteNode(const Type & nodeInfo)
 {
 	
-	nodeType<Type>* node = first;
-	if (node->info == nodeInfo)
+	nodeType<Type>* node = first; // sets nodeType pointer to first
+
+	if (node == nullptr)
+	{
+		return; // if node equals nullptr then the function returns void
+	}
+	else if (node->info == nodeInfo) // if the first node is the node being deleted
 		{
-			nodeType<Type> *tmp = node;
-			node = node->link;
-			delete tmp;
-			count--;
+			nodeType<Type> *tmp = node; // creates a nodeType pointer to represent node pointer
+			node = node->link; // sets the first node to the second node in the list
+			delete tmp; // deletes the first node and since /node\ is set to 
+			first = node; // lnked list instance is redefined to not have the node that was deleted
+			count--; // 
 		}
 	else 
 	{

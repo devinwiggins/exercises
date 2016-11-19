@@ -44,19 +44,19 @@ int main()
 	//}
 
 	linkedListType<int> list = linkedListType<int>();
-	//linkedListType<int> list2 = linkedListType<int>();
+	linkedListType<int> list2 = linkedListType<int>();
 	list.insertFirst(4); // last
-	list.insertFirst(3);
+	list.insertFirst(1);
 	list.insertFirst(2);
 	list.insertFirst(1); // first
 
 	list.insertLast(5);
-	list.insertLast(6);
+	list.insertLast(1);
 	//list.search(6);
-	//std::cout << list.front();
+	//td::cout << list.front();
 	//list.destroyList();
 	
-	list.deleteNode(5);
+	list.deleteNode(1);
 	//list2 = list;
 	list.print();
 	//std::cout << list2.back();
