@@ -140,14 +140,15 @@ template<typename Type>
 inline const linkedListType<Type>& linkedListType<Type>::operator=(const linkedListType<Type>& otherList)
 {
 	
-	copyList(otherList);
+	copyList(otherList); 
 	return *this;
 }
 
 template<typename Type>
 inline void linkedListType<Type>::initializeList()
 {
-	first = NULL;
+	 // intializes the list as empty by setting the first and last nodes to null and setting count to 0
+	first = NULL; 
 	last = NULL;
 	count = 0;
 }
@@ -156,7 +157,7 @@ template<typename Type>
 inline bool linkedListType<Type>::isEmptyList() const
 {
 
-	return (first == NULL) ? true : false;
+	return (first == NULL) ? true : false; // checks true or false if the list is empty
 }
 
 template<typename Type>
@@ -169,13 +170,13 @@ inline void linkedListType<Type>::print() const
 		std::cout  << currentNode->info << std::endl; //prints the data of the nodes while the conditions of the while loop is met
 		currentNode = currentNode->link; //iterates through the list
 	}
-	std::cout << "count = " << count << std::endl;
+	std::cout << "count = " << count << std::endl; // prints count of list
 }
 
 template<typename Type>
 inline int linkedListType<Type>::length() const
 {
-	return count;
+	return count; // count is the length so return count
 }
 
 template<typename Type>
@@ -188,27 +189,26 @@ inline void linkedListType<Type>::destroyList()
 	while (currentNode != NULL)
 	{
 		nodeType<Type>* tmp = NULL;
-		currentNode = currentNode->link;
-		currentNode = tmp;
-		delete tmp;
-
-		first = NULL;
-		last = NULL;
-		count = 0;
+		currentNode = tmp; // deletes the current node
+		delete tmp; 
+		currentNode = currentNode->link; // iterates through the list
 	}
+	first = NULL; 
+	last = NULL;
+	count = 0;
 }
 
 template<typename Type>
 inline Type linkedListType<Type>::front() const
 {
-	assert(first != NULL);
+	assert(first != NULL); // stops the program if the list is empty
 	return first->info; 
 }
 
 template<typename Type>
 inline Type linkedListType<Type>::back() const
 {
-	assert(first != NULL);
+	assert(first != NULL); // stops the program if the list is empty
 	return last->info;
 }
 
@@ -222,10 +222,10 @@ inline bool linkedListType<Type>::search(const Type & nodeInfo)
 		
 		if (nodeInfo == node->info)
 		{
-			return true;
+			return true; // if the node being searched is found the function returns true
 		}
 
-		node = node->link;
+		node = node->link; // iterates through the list
 	}
 	return false;
 }
@@ -298,14 +298,14 @@ void linkedListType<Type>::deleteNode(const Type & nodeInfo)
 		}
 	else 
 	{
-		while (node->link != NULL)
+		while (node->link != NULL) // if the list actually has nodes
 		{
 			if (node->link->info == nodeInfo)
 			{
-				nodeType<Type>* tmp = node->link;
-				node->link = node->link->link;
-				delete tmp;
-				count--;
+				nodeType<Type>* tmp = node->link; // sets a tmp variable to the second node
+				node->link = node->link->link; // sets the link of the first node to the third node instead of second
+				delete tmp; // deletes second node
+				count--; // lowers count
 				break;
 			}
 			node = node->link;
@@ -316,13 +316,13 @@ void linkedListType<Type>::deleteNode(const Type & nodeInfo)
 template<typename Type>
 inline linkedListIterator<Type> linkedListType<Type>::begin()
 {
-	return linkedListIterator<Type>(first);
+	return linkedListIterator<Type>(first); // returns first as the beginnging node
 }
 
 template<typename Type>
 inline linkedListIterator<Type> linkedListType<Type>::end()
 {
-	return linkedListIterator<Type>(last);
+	return linkedListIterator<Type>(last); // returns last node as the end of the list
 }
 
 template<typename Type>
@@ -340,9 +340,10 @@ inline linkedListType<Type>::linkedListType(const linkedListType<Type>& otherLis
 template<typename Type>
 inline void linkedListType<Type>::copyList(const linkedListType<Type>& otherList)
 {
-	destroyList();
+	// deletes current list and makes the new list equal to current list
+	destroyList(); 
 
-	first = otherList.first;
+	first = otherList.first; 
 	last = otherList.last;
 	count = otherList.count;
 }
@@ -351,13 +352,12 @@ template<typename Type>
 inline linkedListIterator<Type>::linkedListIterator(nodeType<Type>* node)
 {
 	current = node;
-
 }
 
 template<typename Type>
 inline Type linkedListIterator<Type>::operator*()
 {
-	if (current == NULL)
+	if (current == NULL) 
 	{
 		current = NULL;
 	}
